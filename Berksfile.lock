@@ -1,0 +1,71 @@
+{
+  "sources": {
+    "apt": {
+      "locked_version": "2.3.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "dmg": {
+      "locked_version": "2.0.9",
+      "git": "git://github.com/thomasmeeus/dmg.git",
+      "ref": "03cf303258a60d92258ce54bf3be3f0342958993"
+    },
+    "git": {
+      "locked_version": "2.7.0"
+    },
+    "curl": {
+      "locked_version": "1.1.0"
+    },
+    "runit": {
+      "locked_version": "1.4.0"
+    },
+    "apache2": {
+      "locked_version": "1.8.4"
+    },
+    "nginx": {
+      "locked_version": "2.0.4"
+    },
+    "java": {
+      "locked_version": "1.15.4"
+    },
+    "jenkins": {
+      "locked_version": "1.2.2"
+    },
+    "rvm": {
+      "locked_version": "0.9.1",
+      "git": "git://github.com/elgalu/chef-rvm.git",
+      "ref": "2dcade87da05388b6a07e2f3c366b160f12ff7bf"
+    },
+    "jenkins-box-for-travis": {
+      "path": "."
+    },
+    "yum": {
+      "locked_version": "2.4.2"
+    },
+    "windows": {
+      "locked_version": "1.11.0"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "bluepill": {
+      "locked_version": "2.3.0"
+    },
+    "rsyslog": {
+      "locked_version": "1.9.0"
+    },
+    "ohai": {
+      "locked_version": "1.1.12"
+    },
+    "aws": {
+      "locked_version": "1.0.0"
+    },
+    "iptables": {
+      "locked_version": "0.12.0"
+    },
+    "chef_gem": {
+      "locked_version": "0.1.0"
+    }
+  }
+}
