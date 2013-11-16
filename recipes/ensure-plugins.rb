@@ -28,12 +28,12 @@ directory "#{node[:jenkins][:server][:home]}/updates" do
   action :create
 end
 remote_file "#{node[:jenkins][:server][:home]}/updates/default-temp.json" do
-  source "http://updates.jenkins-ci.org/update-center.json"
+  source 'http://updates.jenkins-ci.org/update-center.json'
   owner node[:jenkins][:server][:user]
   group node[:jenkins][:server][:group]
 end
 # TODO: This script depends on `sed` which currently no cookbook is available: http://community.opscode.com/cookbooks/sed
-execute "update jenkins update center" do
+execute 'update jenkins update center' do
   # command "wget http://updates.jenkins-ci.org/update-center.json -qO- | sed '1d;$d'  > #{node[:jenkins][:server][:home]}/updates/default.json"
   command "sed '1d;$d' #{node[:jenkins][:server][:home]}/updates/default-temp.json > #{node[:jenkins][:server][:home]}/updates/default.json"
   user node[:jenkins][:server][:user]
@@ -43,4 +43,4 @@ end
 
 # Finally install all plugins and restart once
 jenkins_cli "install-plugin #{plugins_to_install.join(' ')}"
-jenkins_cli "safe-restart"
+jenkins_cli 'safe-restart'

@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 # vi: set ft=ruby :
 
-Vagrant.configure("2") do |config|
-  config.vm.hostname = "jenkins-box-for-travis" #set this in your /etc/hosts
-  config.vm.box = "precise64" #all vagrant VMs require a box to builld off of.
+Vagrant.configure('2') do |config|
+  config.vm.hostname = 'jenkins-box-for-travis' # Set this in your /etc/hosts
+  config.vm.box = 'precise64' # All vagrant VMs require a box to builld off of.
   # Fetch from here if doesn't exist on the file system
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
 
   # Enable plugin. Note globally is done at ~/.vagrant.d/Vagrantfile
   config.berkshelf.enabled = true
