@@ -8,6 +8,7 @@ GEM
     akami (1.2.0)
       gyoku (>= 0.4.0)
       nokogiri (>= 1.4.0)
+    ast (1.1.0)
     berkshelf (2.0.10)
       activesupport (~> 3.2.0)
       addressable (~> 2.3.4)
@@ -39,10 +40,20 @@ GEM
       activesupport (>= 3.2.0)
       hashie (>= 2.0.2)
       multi_json (>= 1.3.0)
+    coderay (1.1.0)
     erubis (2.7.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     ffi (1.9.3)
+    foodcritic (3.0.3)
+      erubis
+      gherkin (~> 2.11.7)
+      nokogiri (~> 1.5.4)
+      rake
+      treetop (~> 1.4.10)
+      yajl-ruby (~> 1.1.0)
+    gherkin (2.11.8)
+      multi_json (~> 1.3)
     gssapi (1.0.3)
       ffi (>= 1.0.1)
     gyoku (1.1.0)
@@ -53,15 +64,18 @@ GEM
       rack
     i18n (0.6.5)
     json (1.8.1)
+    kitchen-vagrant (0.11.3)
+      test-kitchen (~> 1.0.0.beta)
     little-plugger (1.1.3)
     logging (1.8.1)
       little-plugger (>= 1.1.3)
       multi_json (>= 1.3.6)
-    mini_portile (0.5.2)
+    method_source (0.8.2)
     minitar (0.5.4)
     mixlib-authentication (1.3.0)
       mixlib-log
     mixlib-log (1.6.0)
+    mixlib-shellout (1.2.0)
     multi_json (1.8.2)
     multipart-post (1.2.0)
     net-http-persistent (2.9)
@@ -69,10 +83,20 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.6.8)
     nio4r (0.5.0)
-    nokogiri (1.6.0)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.5.10)
     nori (1.1.5)
+    parser (2.0.0)
+      ast (~> 1.1)
+      slop (~> 3.4, >= 3.4.5)
+    polyglot (0.3.3)
+    powerpack (0.0.9)
+    pry (0.9.12.3)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.5.2)
+    rainbow (1.1.4)
+    rake (10.1.0)
     rbzip2 (0.2.0)
     retryable (1.3.3)
     ridley (1.5.3)
@@ -95,7 +119,12 @@ GEM
       solve (>= 0.4.4)
       varia_model (~> 0.1)
       winrm (~> 1.1.0)
+    rubocop (0.15.0)
+      parser (~> 2.0)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.1.4)
     rubyntlm (0.1.1)
+    safe_yaml (0.9.7)
     savon (0.9.5)
       akami (~> 1.0)
       builder (>= 2.1.2)
@@ -104,9 +133,21 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 1.0)
       wasabi (~> 1.0)
+    slop (3.4.7)
     solve (0.8.1)
+    test-kitchen (1.0.0.beta.1)
+      celluloid
+      mixlib-shellout
+      net-scp
+      net-ssh
+      pry
+      safe_yaml (~> 0.9.3)
+      thor
     thor (0.18.1)
     timers (1.1.0)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
     uuidtools (2.1.4)
     vagrant-berkshelf (1.3.4)
       activesupport (>= 3.2.0, < 3.2.13)
@@ -127,10 +168,15 @@ GEM
       rubyntlm (~> 0.1.1)
       savon (= 0.9.5)
       uuidtools (~> 2.1.2)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  berkshelf
-  vagrant-berkshelf
+  berkshelf (~> 2.0)
+  foodcritic (>= 3.0.3)
+  kitchen-vagrant (>= 0.11.3)
+  rubocop (>= 0.15)
+  test-kitchen (= 1.0.0.beta.1)
+  vagrant-berkshelf (~> 1.3)
