@@ -1,6 +1,8 @@
 # Jenkins Box for Travis
 
-TODO Badges
+[![Build Status][BS img]][Build Status]
+[![Dependency Status][DS img]][Dependency Status]
+[![Code Climate][CC img]][Code Climate]
 
 ## Description
 
@@ -15,7 +17,7 @@ Helps you build a local VM for ruby development by using [Vagrant][] + [Chef-Sol
 
 ## Installation
 
-Ensure you meet the [requirements](#Requirements) then automatically verify and install by using the bootstrap script:
+Ensure you meet the [requirements](#requirements) then automatically verify and install by using the bootstrap script:
 
     ./bootstrap.sh
 
@@ -46,7 +48,7 @@ Then open your browser and visit Jenkins to verify is running:
 
 ## Usage
 
-TODO
+TODO; WIP/
 
 ## Requirements
 
@@ -55,6 +57,15 @@ TODO
 - [Chef][] through [Chef-Solo][] + [Berkshelf][]
 - *nix based Operating Systems (Linux, Ubuntu, Mac OSX, etc...)
 - Not tested on Windows. You should at least ensure [GNU sed][] is installed.
+
+## Contributing
+
+1. Fork it.
+2. Make your feature addition or bug fix and create your feature branch.
+3. Update the [Change Log][].
+3. Add specs/tests for it. This is important so I don't break it in a future version unintentionally.
+4. Commit, create a new Pull Request.
+5. Check that your pull request passes the [build][travis pull requests].
 
 ## License
 
@@ -70,3 +81,25 @@ Released under the MIT License. See the [LICENSE][] file for further details.
 [Ruby]:       http://www.ruby-lang.org/
 [RVM]:        http://rvm.io/
 [GNU sed]:    http://gnuwin32.sourceforge.net/packages/sed.htm
+[LICENSE]: LICENSE.md
+
+[Change Log]: CHANGELOG.md
+
+<!-- [RubyGems]: https://rubygems.org/gems/jenkins-box-for-travis -->
+<!-- [Documentation]: http://rubydoc.info/gems/jenkins-box-for-travis -->
+[Source]: https://github.com/elgalu/jenkins-box-for-travis
+[Bugtracker]: https://github.com/elgalu/jenkins-box-for-travis/issues
+
+[travis pull requests]: https://travis-ci.org/elgalu/jenkins-box-for-travis/pull_requests
+
+<!-- [Gem Version]: https://rubygems.org/gems/jenkins-box-for-travis -->
+[Build Status]: https://travis-ci.org/elgalu/jenkins-box-for-travis
+[Dependency Status]: https://gemnasium.com/elgalu/jenkins-box-for-travis
+[Code Climate]: https://codeclimate.com/github/elgalu/jenkins-box-for-travis
+<!-- [Coverage Status]: https://coveralls.io/r/elgalu/jenkins-box-for-travis -->
+
+<!-- [GV img]: https://badge.fury.io/rb/jenkins-box-for-travis.png -->
+[BS img]: https://travis-ci.org/elgalu/jenkins-box-for-travis.png
+[DS img]: https://gemnasium.com/elgalu/jenkins-box-for-travis.png
+[CC img]: https://codeclimate.com/github/elgalu/jenkins-box-for-travis.png
+<!-- [CS img]: https://coveralls.io/repos/elgalu/jenkins-box-for-travis/badge.png?branch=master -->
