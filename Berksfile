@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # vi: set ft=ruby :
 
-site :opscode # Will be deprecated and replaced with source()
-# source "http://cookbooks.opscode.com/api/v1"
+site :opscode # Still using this deprecated site location until vagrant is upgraded
+# with the usage of:
 # source "https://api.berkshelf.com"
 
 # Accessory recipes
