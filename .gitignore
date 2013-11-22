@@ -9,4 +9,5 @@
 
 # Bundler
 .bundle/*
-
+.tags
+.gemtags
