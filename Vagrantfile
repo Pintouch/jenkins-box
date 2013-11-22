@@ -20,11 +20,12 @@ Vagrant.configure('2') do |config|
   # Forward jenkins port
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
+  # This is important to avoid bugs in case an older version of chef is already instaled in the pre-packaged box or machine
+  # http://stackoverflow.com/questions/11325479/how-to-control-the-version-of-chef-that-vagrant-uses-to-provision-vms#answer-18213542
+  config.omnibus.chef_version = :latest
+
   config.vm.provision :chef_solo do |chef|
     chef.log_level = :debug
-
-    # config.omnibus.chef_version = "11.8.0"
-
     chef.roles_path = 'roles'
     chef.add_role 'base'
   end

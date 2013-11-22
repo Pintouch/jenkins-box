@@ -34,6 +34,7 @@ chef-solo --version #=> Chef: 11.8.0
 bundle install
 bundle exec berks install
 vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-omnibus
 ```
 
 After everything went fine start your VM:

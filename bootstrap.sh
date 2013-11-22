@@ -39,8 +39,9 @@ echo "Installing cookbooks using berkshelf"
 bundle exec berks install
 
 echo ""
-echo "Installing vagrant plugins"
+echo "Installing necessary vagrant plugins"
 vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-omnibus
 
 echo ""
 echo "If no errors try running 'vagrant up'"
