@@ -19,8 +19,8 @@ cookbook 'apache2', '>= 1.8.4'
 cookbook 'nginx',   '>= 2.0.4'
 
 # Intended recipes
-cookbook 'jenkins', '>= 1.2.2'
-cookbook 'rvm',     github: 'elgalu/chef-rvm', branch: :gawk # To temporary fix https://github.com/fnichol/chef-rvm/pull/213
+cookbook 'jenkins', github: 'elgalu/jenkins-cookbooks', branch: :cli_timeout # To fix https://github.com/opscode-cookbooks/jenkins/pull/110
+cookbook 'rvm',     github: 'elgalu/chef-rvm', branch: :gawk # To fix https://github.com/fnichol/chef-rvm/pull/213
 
 # TODO: To achieve as close as possible TravisCI environment, i may need to check these:
 #   https://github.com/travis-ci/travis-cookbooks/tree/master/ci_environment

@@ -36,7 +36,9 @@
       "locked_version": "2.0.4"
     },
     "jenkins": {
-      "locked_version": "1.2.2"
+      "locked_version": "1.2.3",
+      "git": "git://github.com/elgalu/jenkins-cookbooks.git",
+      "ref": "090a806647ce6d94adf75d658e4f8c7d851cc8e3"
     },
     "rvm": {
       "locked_version": "0.9.1",
