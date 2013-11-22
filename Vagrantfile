@@ -21,49 +21,11 @@ Vagrant.configure('2') do |config|
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
   config.vm.provision :chef_solo do |chef|
-    rvm_attrs = {
-      'rvm' => { 'user_installs' =>
-        [
-         { 'user' => 'vagrant',
-           'global_gems' => [], # Force empty global gems to avoid rbx error while installs bundler
-           'rubies' => ['2.0.0', '1.9.3', 'jruby-1.7.6', 'ree-1.8.7', 'rbx-2.1.1'],
-           'default_ruby' => '2.0.0' }
-        ]
-      }
-    }
+    chef.log_level = :debug
 
-    jenkins_attrs = {
-      'jenkins' => { 'server' =>
-        { 'plugins' => %w(git github rake rvm ruby-runtime) }
-      }
-    }
+    # config.omnibus.chef_version = "11.8.0"
 
-    chef.json.merge! rvm_attrs
-    chef.json.merge! jenkins_attrs
-
-    chef.run_list = %w(
-      recipe[apt]
-      recipe[java]
-      recipe[build-essential]
-      recipe[git]
-      recipe[curl]
-      recipe[runit]
-      recipe[ark]
-      recipe[vim]
-      recipe[rvm::user]
-      recipe[rvm::vagrant]
-      recipe[jenkins]
-      recipe[jenkins-box-for-travis::fix-1538]
-      recipe[jenkins::server]
-      recipe[jenkins-box-for-travis::ensure-plugins]
-    )
-
-    # Notes on decided run_list
-    # recipe[rvm::vagrant] can help resolving the chef-solo binary on
-    #  subsequent `vagrant provision` executions.
-    # recipe[jenkins-box-for-travis::fix-1538] fixes error for non-existing dir
-    #  /var/run/jenkins see https://issues.jenkins-ci.org/browse/JENKINS-20407
-    # recipe[rvm::gem_package] idk if this worth using
-    # recipe[rvm::system] nope; using rvm::user instead of this wide install
+    chef.roles_path = 'roles'
+    chef.add_role 'base'
   end
 end

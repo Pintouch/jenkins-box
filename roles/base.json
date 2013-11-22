@@ -1,0 +1,60 @@
+{
+  "name": "base",
+  "description": "The base role for the Jenkins service with all necessary to run in-house TravisCI",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+
+  "default_attributes": {
+     "java": {
+        "install_flavor": "openjdk",
+        "jdk_version": 7,
+        "accept_license_agreement": true,
+        "oracle": {
+           "accept_oracle_download_terms": true
+        }
+     },
+     "rvm": {
+        "user_installs": [
+           {
+              "user": "vagrant",
+              "global_gems": [],
+              "rubies": [
+                 "2.0.0",
+                 "1.9.3",
+                 "jruby-1.7.6",
+                 "ree-1.8.7",
+                 "rbx-2.1.1"
+              ],
+              "default_ruby": "2.0.0"
+           }
+        ]
+     },
+     "jenkins": {
+        "server": {
+           "plugins": [
+              "git",
+              "github",
+              "rake",
+              "rvm"
+           ]
+        }
+     }
+   },
+
+  "run_list": [
+    "recipe[apt]",
+    "recipe[java]",
+    "recipe[build-essential]",
+    "recipe[git]",
+    "recipe[curl]",
+    "recipe[runit]",
+    "recipe[ark]",
+    "recipe[vim]",
+    "recipe[rvm::user]",
+    "recipe[rvm::vagrant]",
+    "recipe[jenkins]",
+    "recipe[jenkins::server]",
+    "recipe[jenkins-box-for-travis::ensure-plugins]"
+  ]
+
+}
