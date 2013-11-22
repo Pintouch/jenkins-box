@@ -41,6 +41,12 @@ execute 'update jenkins update center' do
   creates "#{node[:jenkins][:server][:home]}/updates/default.json"
 end
 
-# Finally install all plugins and restart once
-jenkins_cli "install-plugin #{plugins_to_install.join(' ')}"
+plugins_to_install.each do |plugin|
+  jenkins_cli "install plugin #{plugin}" do
+    # timeout 1800 # http://goo.gl/7C5CUc && http://goo.gl/JAEhDm
+    # command "install-plugin #{plugins_to_install.join(' ')}"
+    command "install-plugin #{plugin}"
+  end
+end
+
 jenkins_cli 'safe-restart'
