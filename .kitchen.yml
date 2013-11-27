@@ -1,32 +1,36 @@
 ---
 driver_plugin: vagrant
 driver_config:
-  require_chef_omnibus: true
+  require_chef_omnibus: latest # Options: 11.8.0, latest, true, false. Ref: https://github.com/test-kitchen/kitchen-vagrant#-require_chef_omnibus
+  # network:
+  # - ["forwarded_port", {guest: 8080, host: 8080}]
 
 platforms:
-- name: ubuntu-12.04-x86_64
+- name: ubuntu-12.04-x86_64-jenkins-0
   driver_config:
-    box: precise64
-    box_url: http://files.vagrantup.com/precise64.box
+    box: base-jenkins-precise64-0
+    box_url: http://sourceforge.net/projects/jenkins-box/files/0.1.0/base-jenkins-precise64-0.box/download
+
+# - name: ubuntu-12.04-x86_64
+#   driver_config:
+#     box: precise64
+#     box_url: http://files.vagrantup.com/precise64.box
+
 # - name: ubuntu-12.04
 #   driver_config:
 #     box: opscode-ubuntu-12.04
 #     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-# - name: ubuntu-10.04
-#   driver_config:
-#     box: opscode-ubuntu-10.04
-#     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_provisionerless.box
+
 # - name: centos-6.4
 #   driver_config:
 #     box: opscode-centos-6.4
 #     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-# - name: centos-5.9
-#   driver_config:
-#     box: opscode-centos-5.9
-#     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-5.9_provisionerless.box
+#   run_list:
+# - recipe[yum::epel]
 
 suites:
 - name: common
   roles_path: roles
   run_list:
   - "role[base]"
+  - "recipe[minitest-handler]"

@@ -59,6 +59,67 @@ TODO; WIP/
 - *nix based Operating Systems (Linux, Ubuntu, Mac OSX, etc...)
 - Not tested on Windows. You should at least ensure [GNU sed][] is installed.
 
+## Testing
+
+This suite uses [minitest-chef-handler][] for convergence integration testing for configuration management systems since it has a broader compatibility than [busser-bats][] through [test-kitchen][]. Why? because you can add launch the minitest [through a recipe][minitest-chef-handler#usage], thus making it compatible with [chef-solo][Chef-Solo], [chef-client][], [vagrant-chef][] and even [test-kitchen][].
+
+So testing is performed once you add `"minitest-handler"` to your run_list. Note this is already added in the [Vagrantfile](Vagrantfile#L47) and [.kitchen.yml](.kitchen.yml#L37)
+
+To run the test suite against multiple platforms check the [.kitchen.yml](.kitchen.yml) and enable the platforms there.
+Then:
+
+```bash
+# Perform all tests automatically without destroying the VM after success
+bundle exec kitchen test --destroy never --parallel
+
+# Or do it step by step by yourself
+bundle exec kitchen create -l debug
+bundle exec kitchen converge -l debug
+bundle exec kitchen verify -l debug
+
+# Login (ssh) into the VM called "common"
+bundle exec kitchen login common
+
+# To login manually (without kitchen magic)
+ssh -p 2222 vagrant@localhost -i ~/.vagrant.d/insecure_private_key
+
+# When you are all done, destroy the testing VM
+bundle exec kitchen destroy
+```
+
+Sample ssh config `~/.ssh/config`
+
+```bash
+Host kitchen-test
+  Hostname localhost
+  HostKeyAlias common-ubuntu-1204-x86-64-jenkins-0
+  Port 2222
+  User vagrant
+  IdentityFile ~/.vagrant.d/insecure_private_key
+```
+
+Then simply
+
+```bash
+ssh kitchen-test
+```
+
+The following is not necessary while using vagrant (without test-kitchen) since in your Vagrantfile this is already configured for you in this line:
+
+```ruby
+config.vm.network :forwarded_port, guest: 8080, host: 8080
+```
+
+But if playing with test-kitchen you can manually forward ports using ssh tunnels. For example to open jenkins at localhost:
+
+```bash
+# All manually
+ssh -L localhost:8080:localhost:8080 -p 2222 vagrant@localhost -i ~/.vagrant.d/insecure_private_key
+
+# Or if you have set up the suggested `~/.ssh/config` simplify the above line into this:
+ssh -L localhost:8080:localhost:8080 kitchen-test
+```
+
 ## Contributing
 
 1. Fork it.
@@ -104,3 +165,10 @@ Released under the MIT License. See the [LICENSE][] file for further details.
 [DS img]: https://gemnasium.com/elgalu/jenkins-box-for-travis.png
 [CC img]: https://codeclimate.com/github/elgalu/jenkins-box-for-travis.png
 <!-- [CS img]: https://coveralls.io/repos/elgalu/jenkins-box-for-travis/badge.png?branch=master -->
+
+[test-kitchen]: https://github.com/test-kitchen/test-kitchen
+[minitest-chef-handler]: https://github.com/calavera/minitest-chef-handler
+[busser-bats]: https://github.com/test-kitchen/busser-bats
+[minitest-chef-handler#usage]: https://github.com/calavera/minitest-chef-handler#usage
+[chef-client]: http://docs.opscode.com/chef_client.html
+[vagrant-chef]: http://docs.vagrantup.com/v2/provisioning/chef_solo.html

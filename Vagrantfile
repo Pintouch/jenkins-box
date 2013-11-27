@@ -3,9 +3,25 @@
 
 Vagrant.configure('2') do |config|
   config.vm.hostname = 'jenkins-box-for-travis' # Set this in your /etc/hosts
-  config.vm.box = 'precise64' # All vagrant VMs require a box to builld off of.
-  # Fetch from here if doesn't exist on the file system
-  config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
+
+  # You can start off using a VagrantUp.com provided box if you don't yet trust my uploaded base-jenkins-precise64-0.box
+  # config.vm.box = 'precise64' # All vagrant VMs require a box to build off of.
+  # config.vm.box_url = 'http://files.vagrantup.com/precise64.box' # Fetch from here if doesn't exist on the file system
+
+  # Packages where built using `vagrant package` e.g. below. Ref at: http://docs-v1.vagrantup.com/v1/docs/getting-started/packaging.html
+  #   vagrant up
+  #   vagrant package --output mytmp.box
+  #   vagrant box add base-jenkins-precise64-0 mytmp.box
+  # Packages where uploaded to sourceforge.net. Ref: http://goo.gl/0T13PI  Upload limits: http://goo.gl/pe2uOy
+  #   rsync -avP -e ssh mytmp.box elgalu@frs.sourceforge.net:/home/frs/project/jenkins-box/0.1.0/
+  #   mv mytmp.box base-jenkins-precise64-0.box
+  #   mv base-jenkins-precise64-0.box /media/user/Datos/VirtualBox/vagrant_boxes/
+  # Ubuntu 12.04 64 (precise64) vagrant machines:
+  #   base-jenkins-precise64-0 : http://sourceforge.net/projects/jenkins-box/files/0.1.0/base-jenkins-precise64-0.box/download
+  #     based on: precise64 (http://files.vagrantup.com/precise64.box)
+  #     added...: jenkins 1.540, openjdk7, build-essential, curl, runit, ark, vim
+  config.vm.box = 'base-jenkins-precise64-0'
+  config.vm.box_url = "http://sourceforge.net/projects/jenkins-box/files/0.1.0/#{config.vm.box}.box/download"
 
   # Enable plugin. Note globally is done at ~/.vagrant.d/Vagrantfile
   config.berkshelf.enabled = true
@@ -28,5 +44,6 @@ Vagrant.configure('2') do |config|
     chef.log_level = :debug
     chef.roles_path = 'roles'
     chef.add_role 'base'
+    chef.add_recipe 'minitest-handler' # for testing
   end
 end

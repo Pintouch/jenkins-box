@@ -13,6 +13,10 @@
            "accept_oracle_download_terms": true
         }
      },
+     "replace_system_ruby": {
+        "ruby_version": "1.9.3-p484",
+        "prefix_path": "/usr/local"
+      },
      "rvm": {
         "user_installs": [
            {
@@ -22,7 +26,6 @@
                  "2.0.0",
                  "1.9.3",
                  "jruby-1.7.8",
-                 "ree-1.8.7",
                  "rbx-2.2.1"
               ],
               "default_ruby": "2.0.0"
@@ -46,13 +49,14 @@
     "recipe[java]",
     "recipe[build-essential]",
     "recipe[git]",
+    "recipe[subversion]",
     "recipe[curl]",
     "recipe[runit]",
     "recipe[ark]",
     "recipe[vim]",
     "recipe[rvm::user]",
-    "recipe[rvm::vagrant]",
-    "recipe[jenkins]",
+    "recipe[ruby_build]",
+    "recipe[jenkins-box-for-travis::replace_system_ruby]",
     "recipe[jenkins::server]",
     "recipe[jenkins-box-for-travis::ensure-plugins]"
   ]

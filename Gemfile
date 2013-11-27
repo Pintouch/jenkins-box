@@ -17,4 +17,7 @@ end
 
 group :integration do
   gem 'kitchen-vagrant', '>= 0.11.3'
+  gem 'chef', '>= 11.8.0', github: 'elgalu/chef-depth-1' # github: 'elgalu/chef', branch: '11.8.0_relax_json', depth: 1
+  gem 'ohai', '>= 6.20.0'
+  gem 'minitest-chef-handler', '>= 1.0.1'
 end

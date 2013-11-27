@@ -3,7 +3,7 @@
 # Cookbook Name:: jenkins-box-for-travis
 # Recipe:: fix-1538
 #
-# Description: Fix error chown: cannot access `/var/run/jenkins`: No such file or directory
+# Description: No longer used: fix error chown: cannot access `/var/run/jenkins`: No such file or directory
 #              https://issues.jenkins-ci.org/browse/JENKINS-20407
 #
 # MIT License (2013)
