@@ -41,7 +41,7 @@ execute 'update jenkins update center' do
   creates "#{node[:jenkins][:server][:home]}/updates/default.json"
 end
 
-# TODO Avoid install plugins that are already installed
+# TODO: Avoid install plugins that are already installed
 plugins_to_install.each do |plugin|
   jenkins_cli "install plugin #{plugin}" do
     # timeout 1800 # http://goo.gl/7C5CUc && http://goo.gl/JAEhDm

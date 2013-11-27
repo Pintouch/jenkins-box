@@ -9,8 +9,8 @@
 #
 include_recipe 'ruby_build'
 
-node_ruby_flavor = node['replace_system_ruby']['ruby_version']
-node_prefix_path = node['replace_system_ruby']['prefix_path']
+node_ruby_flavor = node[:replace_system_ruby][:ruby_version]
+node_prefix_path = node[:replace_system_ruby][:prefix_path]
 
 ruby_build_ruby(node_ruby_flavor) do
   prefix_path(node_prefix_path)

@@ -20,7 +20,7 @@ log_level          :debug
 # valid values are: a quoted string specifying a file, or STDOUT with no quotes.
 # Corresponds to chef-solo -L
 
-log_location       STDOUT #"/var/log/chef/solo.log"
+log_location       STDOUT # "/var/log/chef/solo.log"
 
 # The location in which role files are located. Default value: /var/chef/roles.
 role_path 'roles'

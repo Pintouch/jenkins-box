@@ -2,7 +2,6 @@
 
 [![Build Status][BS img]][Build Status]
 [![Dependency Status][DS img]][Dependency Status]
-[![Code Climate][CC img]][Code Climate]
 
 ## Description
 
@@ -49,7 +48,7 @@ Then open your browser and visit Jenkins to verify is running:
 
 ## Usage
 
-TODO; WIP/
+TODO; WIP
 
 ## Requirements
 
