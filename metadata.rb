@@ -1,3 +1,4 @@
+# encoding: utf-8
 name             'jenkins-box-for-travis'
 maintainer       'Leo Gallucci'
 maintainer_email 'elgalu3@gmail.com'

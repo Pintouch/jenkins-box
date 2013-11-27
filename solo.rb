@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Configuration File For Chef Solo (chef-solo)
 # This file is added for documentation purposes.
 #
