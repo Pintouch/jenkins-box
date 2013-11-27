@@ -42,12 +42,21 @@ execute 'update jenkins update center' do
   creates "#{node[:jenkins][:server][:home]}/updates/default.json"
 end
 
-# TODO: Avoid install plugins that are already installed
+# Avoid installing plugins that are already installed
+installed_plugins = 0
+plugins_dir = File.join(node[:jenkins][:server][:home], 'plugins')
+plugin_exists = proc { |name| ::File.exists? File.join(plugins_dir, "#{name}.jpi") }
+
 plugins_to_install.each do |plugin|
   jenkins_cli "install plugin #{plugin}" do
     # timeout 1800 # http://goo.gl/7C5CUc && http://goo.gl/JAEhDm
     command "install-plugin #{plugin}"
+    installed_plugins += 1 unless plugin_exists.call(plugin)
+    not_if { plugin_exists.call(plugin) }
   end
 end
 
-jenkins_cli 'safe-restart'
+jenkins_cli 'safe-restart' do
+  command 'safe-restart'
+  only_if { installed_plugins > 0 }
+end
