@@ -6,9 +6,10 @@ source 'https://rubygems.org'
 # gem 'vagrant-berkshelf', '>= 1.4.0.dev1'
 # gem 'test-kitchen',      '>= 1.0.0.beta.4' #net-ssh dependency issue
 
-gem 'berkshelf',         '~> 2.0'
-gem 'vagrant-berkshelf', '~> 1.3'
+gem 'berkshelf',         '~> 2.0', '>= 2.0.10'
+gem 'vagrant-berkshelf', '~> 1.3', '>= 1.3.4'
 gem 'test-kitchen',      '1.0.0.beta.3'
+# gem 'test-kitchen',      '~> 1.1', '>= 1.1.1' #'1.0.0.beta.3'
 
 group :test do
   gem 'foodcritic',      '>= 3.0.3'

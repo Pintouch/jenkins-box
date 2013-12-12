@@ -42,7 +42,7 @@ Vagrant.configure('2') do |config|
   config.omnibus.chef_version = :latest
 
   config.vm.provision :chef_solo do |chef|
-    chef.log_level = :debug
+    chef.log_level = :info # :info, :debug
     chef.roles_path = 'roles'
     chef.add_role 'base'
     chef.add_recipe 'minitest-handler' # for testing
