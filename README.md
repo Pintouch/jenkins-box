@@ -24,23 +24,36 @@ Or avoid the bootstrap.sh and do it yourself manually:
 
 ```sh
 # Ensure these commands doesn't fail
-vagrant --version   #=> Vagrant 1.3.5
+vagrant --version   #=> Vagrant 1.4.0
 ruby --version      #=> Ruby 2.0.0
-bundle --version    #=> Bundler version 1.3.4
-chef-solo --version #=> Chef: 11.8.0
+bundle --version    #=> Bundler version 1.5.0.rc.1
+chef-solo --version #=> Chef: 11.10.0.dev.2
 
-# Install the rest
+# Install gems and cookboks
 bundle install
 bundle exec berks install
-vagrant plugin install vagrant-berkshelf
+
+# Optional if you already had on older version
+vagrant plugin uninstall vagrant-berkshelf
+vagrant plugin uninstall vagrant-omnibus
+
+# Install necessary plugins. Ref on custom options: http://goo.gl/ce63lQ and http://goo.gl/gqMXbn
+vagrant plugin install vagrant-berkshelf --plugin-prerelease
+#=> Installed the plugin 'vagrant-berkshelf (1.4.0.dev1)'
 vagrant plugin install vagrant-omnibus
+#=> Installed the plugin 'vagrant-omnibus   (1.1.2)'
 ```
 
 After everything went fine start your VM:
 
-    vagrant up
+    vagrant up --no-provision
+    #=> Thank you for installing Chef!
+    #=> Machine booted and ready!
 
-This final step may take from minutes to a couple of hours.
+    vagrant provision
+    #=> Finished tests in 2.326998s, 4.7271 tests/s, 6.8758 assertions/s.
+
+This final steps may take from minutes to a couple of hours.
 
 Then open your browser and visit Jenkins to verify is running:
 
@@ -52,7 +65,7 @@ TODO; WIP
 
 ## Requirements
 
-- [Vagrant][] 1.3+
+- [Vagrant][] 1.4+
 - [Ruby][] + [Bundler][]
 - [Chef][] through [Chef-Solo][] + [Berkshelf][]
 - *nix based Operating Systems (Linux, Ubuntu, Mac OSX, etc...)
@@ -62,7 +75,7 @@ TODO; WIP
 
 This suite uses [minitest-chef-handler][] for convergence integration testing for configuration management systems since it has a broader compatibility than [busser-bats][] through [test-kitchen][]. Why? because you can add launch the minitest [through a recipe][minitest-chef-handler#usage], thus making it compatible with [chef-solo][Chef-Solo], [chef-client][], [vagrant-chef][] and even [test-kitchen][].
 
-So testing is performed once you add `"minitest-handler"` to your run_list. Note this is already added in the [Vagrantfile](Vagrantfile#L47) and [.kitchen.yml](.kitchen.yml#L37)
+So testing is performed once you add `"minitest-handler"` to your run_list. Note this is already added in the [Vagrantfile](Vagrantfile#L49) and [.kitchen.yml](.kitchen.yml#L36)
 
 To run the test suite against multiple platforms check the [.kitchen.yml](.kitchen.yml) and enable the platforms there.
 Then:
@@ -71,10 +84,15 @@ Then:
 # Perform all tests automatically without destroying the VM after success
 bundle exec kitchen test --destroy never --parallel
 
-# Or do it step by step by yourself
-bundle exec kitchen create -l debug
-bundle exec kitchen converge -l debug
-bundle exec kitchen verify -l debug
+# Or do it step by step by yourself and one platform at a time
+bundle exec kitchen create -l info
+bundle exec kitchen converge -l info
+bundle exec kitchen verify -l info
+
+# Or one platform at a time
+bundle exec kitchen create ubuntu-12 -l debug
+bundle exec kitchen converge ubuntu-12 -l debug
+bundle exec kitchen verify ubuntu-12 -l debug
 
 # Login (ssh) into the VM called "common"
 bundle exec kitchen login common

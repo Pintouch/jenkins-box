@@ -7,11 +7,11 @@
 # Description: Install necessary plugins to run the same that can be run on TravisCI
 #              The current opscode jenkins recipe failed to install the plugins so this recipe to the rescue.
 #
-# MIT License (2013)
+# MIT License
 #
 include_recipe 'jenkins'
 
-plugins_to_install = node[:jenkins][:server][:plugins]
+plugins_to_install = node['jenkins-box-for-travis'.to_sym][:server][:plugins]
 
 # Ensure jenkins user home dir exists
 directory node[:jenkins][:server][:home] do
@@ -28,11 +28,13 @@ directory "#{node[:jenkins][:server][:home]}/updates" do
   group node[:jenkins][:server][:group]
   action :create
 end
+
 remote_file "#{node[:jenkins][:server][:home]}/updates/default-temp.json" do
   source 'http://updates.jenkins-ci.org/update-center.json'
   owner node[:jenkins][:server][:user]
   group node[:jenkins][:server][:group]
 end
+
 # TODO: This script depends on `sed` which currently no cookbook is available: http://community.opscode.com/cookbooks/sed
 execute 'update jenkins update center' do
   # command "wget http://updates.jenkins-ci.org/update-center.json -qO- | sed '1d;$d'  > #{node[:jenkins][:server][:home]}/updates/default.json"

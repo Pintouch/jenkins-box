@@ -1,6 +1,7 @@
 # encoding: utf-8
-#!/usr/bin/env ruby
 # vi: set ft=ruby :
+
+Vagrant.require_version ">= 1.4"
 
 Vagrant.configure('2') do |config|
   config.vm.hostname = 'jenkins-box-for-travis' # Set this in your /etc/hosts

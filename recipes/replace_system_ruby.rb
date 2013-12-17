@@ -6,7 +6,7 @@
 #
 # Description: Replace system Ruby (probably 1.8.7) with more updated one by using ruby_build
 #
-# MIT License (2013)
+# MIT License
 #
 include_recipe 'ruby_build'
 

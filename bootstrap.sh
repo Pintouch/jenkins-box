@@ -40,7 +40,7 @@ bundle exec berks install
 
 echo ""
 echo "Installing necessary vagrant plugins"
-vagrant plugin install vagrant-berkshelf
+vagrant plugin install vagrant-berkshelf --plugin-prerelease
 vagrant plugin install vagrant-omnibus
 
 echo ""

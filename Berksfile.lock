@@ -1,5 +1,5 @@
 {
-  "sources": {
+  "dependencies": {
     "apt": {
       "locked_version": "2.3.0"
     },
@@ -54,22 +54,17 @@
       "locked_version": "1.1.4"
     },
     "jenkins-box-for-travis": {
+      "locked_version": "0.0.1",
       "path": "."
     },
     "windows": {
       "locked_version": "1.11.0"
-    },
-    "chef_handler": {
-      "locked_version": "1.1.4"
     },
     "aws": {
       "locked_version": "1.0.0"
     },
     "bluepill": {
       "locked_version": "2.3.0"
-    },
-    "rsyslog": {
-      "locked_version": "1.9.0"
     },
     "ohai": {
       "locked_version": "1.1.12"
@@ -79,6 +74,12 @@
     },
     "chef_gem": {
       "locked_version": "0.1.0"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "rsyslog": {
+      "locked_version": "1.9.0"
     }
   }
 }

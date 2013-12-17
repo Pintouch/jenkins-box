@@ -11,8 +11,9 @@ recipe  'jenkins-box-for-travis::default',             'Does nothing'
 recipe  'jenkins-box-for-travis::fix-1538',            'No longer used: fix error chown: cannot access `/var/run/jenkins`: No such file or directory'
 recipe  'jenkins-box-for-travis::ensure-plugins',      'Install necessary plugins so the jenkins box is ready to emulate in-house TravisCI.'
 recipe  'jenkins-box-for-travis::replace_system_ruby', 'Replace system Ruby (probably 1.8.7) with more updated one by using ruby_build'
+recipe  'jenkins-upgrade',                             'Upgrade Jenkins version to the latest then restart the Jenkins service.'
 
-# ensure-plugins
+# ensure-plugins, jenkins-upgrade
 depends 'jenkins',    '>= 1.2'
 # replace_system_ruby
 depends 'ruby_build', '>= 0.8.0'

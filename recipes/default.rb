@@ -4,5 +4,5 @@
 # Cookbook Name:: jenkins-box-for-travis
 # Recipe:: default
 #
-# MIT License (2013)
+# MIT License
 #

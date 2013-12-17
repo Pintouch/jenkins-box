@@ -1,9 +1,15 @@
 ---
-driver_plugin: vagrant
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
 driver_config:
-  require_chef_omnibus: latest # Options: 11.8.0, latest, true, false. Ref: https://github.com/test-kitchen/kitchen-vagrant#-require_chef_omnibus
-  # network:
-  # - ["forwarded_port", {guest: 8080, host: 8080}]
+  # Options: 11.8.0, latest, true, false. Ref: https://github.com/test-kitchen/kitchen-vagrant#-require_chef_omnibus
+  require_chef_omnibus: latest
+  network:
+  - [ 'forwarded_port', { guest: 8080, host: 8181 } ]
 
 platforms:
 - name: ubuntu-12.04-x86_64-jenkins-0

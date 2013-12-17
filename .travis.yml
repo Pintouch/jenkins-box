@@ -1,10 +1,14 @@
 language: ruby
-before_script:
-  - bundle exec berks install
+
 rvm:
   - 1.9.3
   - 2.0.0
+
+install:
+  - travis_retry bundle install
+  - bundle exec berks install
+
 script:
   - bundle exec foodcritic -f any .
   - bundle exec rubocop
-  # - bundle exec kitchen test # too slow for TravisCI
+  # - bundle exec kitchen test -l debug # too slow for TravisCI
