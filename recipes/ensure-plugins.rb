@@ -11,7 +11,8 @@
 #
 include_recipe 'jenkins'
 
-plugins_to_install = node['jenkins-box-for-travis'.to_sym][:server][:plugins]
+jenkins_box = 'jenkins-box-for-travis'.to_sym
+plugins_to_install = node[jenkins_box][:server][:plugins]
 
 # Ensure jenkins user home dir exists
 directory node[:jenkins][:server][:home] do

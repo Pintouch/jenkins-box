@@ -81,7 +81,7 @@ To run the test suite against multiple platforms check the [.kitchen.yml](.kitch
 Then:
 
 ```bash
-# Perform all tests automatically without destroying the VM after success
+# Perform all tests automatically without destroying the VM afterwards
 bundle exec kitchen test --destroy never --parallel
 
 # Or do it step by step by yourself and one platform at a time
