@@ -12,20 +12,20 @@ driver_config:
   - [ 'forwarded_port', { guest: 8080, host: 8181 } ]
 
 platforms:
-- name: ubuntu-12.04-x86_64-jenkins-0
-  driver_config:
-    box: base-jenkins-precise64-0
-    box_url: http://sourceforge.net/projects/jenkins-box/files/0.1.0/base-jenkins-precise64-0.box/download
+# - name: ubuntu-12.04-x86_64-jenkins-0
+#   driver_config:
+#     box: base-jenkins-precise64-0
+#     box_url: http://sourceforge.net/projects/jenkins-box/files/0.1.0/base-jenkins-precise64-0.box/download
 
 # - name: ubuntu-12.04-x86_64
 #   driver_config:
 #     box: precise64
 #     box_url: http://files.vagrantup.com/precise64.box
 
-# - name: ubuntu-12.04
-#   driver_config:
-#     box: opscode-ubuntu-12.04
-#     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
 
 # - name: centos-6.4
 #   driver_config:
@@ -39,4 +39,5 @@ suites:
   roles_path: roles
   run_list:
   - "role[base]"
+  - "role[master]"
   - "recipe[minitest-handler]"

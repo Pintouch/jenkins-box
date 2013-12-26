@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Author:: Leo Gallucci <elgalu3@gmail.com>
-# Cookbook Name:: jenkins-box-for-travis
+# Cookbook Name:: jenkins_box
 # Recipe:: fix-1538
 #
 # Description: No longer used: fix error chown: cannot access `/var/run/jenkins`: No such file or directory

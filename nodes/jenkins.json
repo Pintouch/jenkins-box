@@ -1,0 +1,20 @@
+{
+  "target_user": "vagrant",
+
+  "jenkins": {
+    "server": {
+       "user": "jenkins"
+    }
+  },
+
+  /*
+  // TODO: Implement the minitest handler
+  // I couln't figure out where to put the test files to let the handler pick them up
+  // "recipe[minitest-handler]"
+  */
+
+  "run_list": [
+    "role[base]",
+    "role[master]"
+  ]
+}

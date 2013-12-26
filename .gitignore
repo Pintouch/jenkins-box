@@ -6,6 +6,8 @@
 \#*#
 .*.sw[a-z]
 *.un~
+cookbooks/*
+bin/*
 
 # Bundler
 .bundle/*

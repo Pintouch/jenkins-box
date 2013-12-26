@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Author:: Leo Gallucci <elgalu3@gmail.com>
-# Cookbook Name:: jenkins-box-for-travis
+# Cookbook Name:: jenkins_box
 # Recipe:: replace_system_ruby
 #
 # Description: Replace system Ruby (probably 1.8.7) with more updated one by using ruby_build

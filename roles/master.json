@@ -1,0 +1,30 @@
+{
+  "name": "master",
+  "description": "The Jenkins master server with all necessary infrastructure to run in-house TravisCI",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+
+  "default_attributes": {
+     "jenkins_box": {
+        "server": {
+           "plugins": [
+              "git",
+              "github",
+              "ruby-runtime",
+              "rake",
+              "selenium",
+              "rvm",
+              "nodejs"
+           ]
+        }
+     }
+   },
+
+
+  "run_list": [
+    "recipe[jenkins::server]",
+    "recipe[jenkins_box::jenkins-upgrade]",
+    "recipe[jenkins_box::ensure-plugins]"
+  ]
+
+}

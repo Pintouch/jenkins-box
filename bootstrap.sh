@@ -36,7 +36,7 @@ bundle install
 
 echo ""
 echo "Installing cookbooks using berkshelf"
-bundle exec berks install
+bundle exec berks vendor cookbooks
 
 echo ""
 echo "Installing necessary vagrant plugins"

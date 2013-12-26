@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Author:: Leo Gallucci <elgalu3@gmail.com>
-# Cookbook Name:: jenkins-box-for-travis
+# Cookbook Name:: jenkins_box
 # Recipe:: ensure-plugins
 #
 # Description: Install necessary plugins to run the same that can be run on TravisCI
@@ -11,8 +11,7 @@
 #
 include_recipe 'jenkins'
 
-jenkins_box = 'jenkins-box-for-travis'.to_sym
-plugins_to_install = node[jenkins_box][:server][:plugins]
+plugins_to_install = node[:jenkins_box][:server][:plugins]
 
 # Ensure jenkins user home dir exists
 directory node[:jenkins][:server][:home] do
@@ -38,7 +37,6 @@ end
 
 # TODO: This script depends on `sed` which currently no cookbook is available: http://community.opscode.com/cookbooks/sed
 execute 'update jenkins update center' do
-  # command "wget http://updates.jenkins-ci.org/update-center.json -qO- | sed '1d;$d'  > #{node[:jenkins][:server][:home]}/updates/default.json"
   command "sed '1d;$d' #{node[:jenkins][:server][:home]}/updates/default-temp.json > #{node[:jenkins][:server][:home]}/updates/default.json"
   user node[:jenkins][:server][:user]
   group node[:jenkins][:server][:group]

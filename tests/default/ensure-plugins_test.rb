@@ -9,7 +9,7 @@
 require 'minitest/spec'
 # include_recipe 'jenkins'
 
-describe_recipe 'jenkins-box-for-travis::ensure-plugins' do
+describe_recipe 'jenkins_box::ensure-plugins' do
 
   describe 'packages' do
     it 'installed jenkins' do
@@ -23,7 +23,7 @@ describe_recipe 'jenkins-box-for-travis::ensure-plugins' do
     end
   end
 
-  PLUGINS = node['jenkins-box-for-travis'.to_sym][:server][:plugins]
+  PLUGINS = node[:jenkins_box][:server][:plugins]
   JENKINS_HOME = node[:jenkins][:server][:home]
 
   def plugin_file(name)

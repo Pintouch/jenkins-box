@@ -5,8 +5,10 @@
   "json_class": "Chef::Role",
 
   "default_attributes": {
+     "vim": {
+       "install_method": "source"
+     },
      "java": {
-        "install_flavor": "openjdk",
         "jdk_version": 7,
         "accept_license_agreement": true,
         "oracle": {
@@ -20,9 +22,9 @@
      "rvm": {
         "user_installs": [
            {
-              "user": "vagrant",
               "global_gems": [],
               "rubies": [
+                 "2.1.0",
                  "2.0.0",
                  "1.9.3",
                  "1.9.2",
@@ -35,34 +37,28 @@
            }
         ]
      },
-     "jenkins-box-for-travis": {
-        "server": {
-           "plugins": [
-              "git",
-              "github",
-              "rake",
-              "rvm"
-           ]
-        }
+     "nodejs": {
+       "version": "0.10.24"
      }
    },
 
   "run_list": [
     "recipe[apt]",
-    "recipe[java]",
     "recipe[build-essential]",
     "recipe[git]",
     "recipe[subversion]",
     "recipe[curl]",
     "recipe[runit]",
     "recipe[ark]",
+    "recipe[jenkins_box::ctags]",
     "recipe[vim]",
-    "recipe[rvm::user]",
+    "recipe[jenkins_box::java-deps]",
+    "recipe[java]",
     "recipe[ruby_build]",
-    "recipe[jenkins-box-for-travis::replace_system_ruby]",
-    "recipe[jenkins::server]",
-    "recipe[jenkins-box-for-travis::jenkins-upgrade]",
-    "recipe[jenkins-box-for-travis::ensure-plugins]"
+    "recipe[jenkins_box::replace_system_ruby]",
+    "recipe[rvm::user]",
+    "recipe[nvm]",
+    "recipe[jenkins_box::nodejs]"
   ]
 
 }

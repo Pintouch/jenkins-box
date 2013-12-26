@@ -1,3 +1,9 @@
+# See the dotfiles chef to setup bashrc, bash_aliases, etc..
+
+http://nickcharlton.net/posts/test-environments-with-vagrant-and-chef.html
+
+    chef.add_recipe "dotfiles"
+
 # Test
 
 minitest-handler is not picking up my tests, location issue?
@@ -45,3 +51,10 @@ https://wiki.jenkins-ci.org/display/JENKINS/Email-ext+plugin
 http://yslow.org/phantomjs/#screenshots-jenkins
 
 ## Add more tests
+
+# Encryption
+
+To create a random number which can then be used as the secret key use openssl:
+
+    openssl rand -base64 512 | tr -d '\r\n' > my_secret_key
+

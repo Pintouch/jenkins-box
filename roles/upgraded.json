@@ -1,0 +1,10 @@
+{
+  "boostrap": {
+    "auto_reboot": 1
+  },
+  "run_list": [
+    "recipe[apt]",
+    "recipe[jenkins_box::apt-upgrade]",
+    "recipe[reboot]"
+  ]
+}
