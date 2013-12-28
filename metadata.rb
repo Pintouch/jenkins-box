@@ -1,1 +1,0 @@
-site-cookbooks/jenkins_box/metadata.rb
