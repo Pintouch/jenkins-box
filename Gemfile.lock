@@ -12,7 +12,7 @@ GIT
       yajl-ruby (~> 1.1)
 
 GEM
-  remote: file:/home/user/oss/jenkins-box-for-travis/chef-11.10.0.alpha.1/
+  remote: file:/home/user/oss/jenkins-box/chef-11.10.0.alpha.1/
   remote: https://rubygems.org/
   specs:
     addressable (2.3.5)
