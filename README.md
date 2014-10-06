@@ -24,46 +24,40 @@ Or avoid the bootstrap.sh and do it yourself manually:
 
 ```sh
 # Ensure these commands doesn't fail
-vagrant --version   #=> Vagrant 1.4.1
-ruby --version      #=> Ruby 2.0.0
-bundle --version    #=> Bundler version 1.5.0.rc.2
+vagrant --version   #=> Vagrant 1.6.5
+ruby --version      #=> Ruby 2.1.3
+bundle --version    #=> Bundler version 1.7.3
 
 # Install gems and cookboks
 bundle install
 bundle exec berks vendor cookbooks # Note `install --path` has been replaced with `vendor` as of berkshelf >= 3
 
 # Optional if you already had on older version
-vagrant plugin uninstall vagrant-berkshelf
-vagrant plugin uninstall vagrant-omnibus
+vagrant plugin update vagrant-berkshelf
+vagrant plugin update vagrant-omnibus
 
 # Install necessary plugins. Ref on custom options: http://goo.gl/ce63lQ and http://goo.gl/gqMXbn
-vagrant plugin install vagrant-berkshelf --plugin-prerelease
-#=> Installed the plugin 'vagrant-berkshelf (1.4.0.dev1)'
+vagrant plugin install vagrant-berkshelf
+#=> Installed the plugin 'vagrant-berkshelf (3.0.1)'
 vagrant plugin install vagrant-omnibus
-#=> Installed the plugin 'vagrant-omnibus   (1.2.1)'
+#=> Installed the plugin 'vagrant-omnibus   (1.4.1)'
 ```
 
 After everything went fine start your VM:
 
-    vagrant up
+    NODE_HOSTNAME=jenkins-master vagrant up
     #=> Thank you for installing Chef!
     #=> Machine booted and ready!
 
 I settled Vagrant not to provision the VM so we can be flexible and start getting used to `knife solo` command.
 
-It is always best to ssh config your server to avoid repeating yourself with the given credentials:
+To ssh into the VM
 
-    vim ~/.ssh/config
-
-    Host jenkins
-      Hostname localhost
-      Port 2222
-      User vagrant
-      IdentityFile ~/.vagrant.d/insecure_private_key
+    NODE_HOSTNAME=jenkins-master vagrant ssh
 
 Install chef on your target server or VM. Note `jenkins` is the hostname i'm giving to my VM for easy of use.
 
-    bundle exec knife solo prepare jenkins --bootstrap-version 11.8.2-1
+    bundle exec knife solo prepare jenkins --bootstrap-version 11.16.2-1
 
 Now provision the target machine with the run_list within the node json file
 
@@ -71,7 +65,7 @@ Now provision the target machine with the run_list within the node json file
 
 This final steps may take from minutes to a couple of hours. If you get a timeout error try executed the errored command by yourself on the target server. Default timeout is set to 10 minutes, if a command takes longer than that ssh into the server and run it yourself, e.g.
 
-    # This was taking 15 minutes on a 512 DSL so i had to `ssh jenkins` and:
+    # This was taking 15 minutes on a 512 DSL so had to `NODE_HOSTNAME=jenkins-master vagrant ssh` and:
     sudo apt-get -q -y install openjdk-7-jdk
 
 Finally open your browser and visit Jenkins to verify is running:
@@ -185,24 +179,24 @@ Released under the MIT License. See the [LICENSE][] file for further details.
 
 [Change Log]: CHANGELOG.md
 
-<!-- [RubyGems]: https://rubygems.org/gems/jenkins_box -->
-<!-- [Documentation]: http://rubydoc.info/gems/jenkins_box -->
-[Source]: https://github.com/elgalu/jenkins_box
-[Bugtracker]: https://github.com/elgalu/jenkins_box/issues
+<!-- [RubyGems]: https://rubygems.org/gems/jenkins-box -->
+<!-- [Documentation]: http://rubydoc.info/gems/jenkins-box -->
+[Source]: https://github.com/elgalu/jenkins-box
+[Bugtracker]: https://github.com/elgalu/jenkins-box/issues
 
-[travis pull requests]: https://travis-ci.org/elgalu/jenkins_box/pull_requests
+[travis pull requests]: https://travis-ci.org/elgalu/jenkins-box/pull_requests
 
-<!-- [Gem Version]: https://rubygems.org/gems/jenkins_box -->
-[Build Status]: https://travis-ci.org/elgalu/jenkins_box
-[Dependency Status]: https://gemnasium.com/elgalu/jenkins_box
-[Code Climate]: https://codeclimate.com/github/elgalu/jenkins_box
-<!-- [Coverage Status]: https://coveralls.io/r/elgalu/jenkins_box -->
+<!-- [Gem Version]: https://rubygems.org/gems/jenkins-box -->
+[Build Status]: https://travis-ci.org/elgalu/jenkins-box
+[Dependency Status]: https://gemnasium.com/elgalu/jenkins-box
+[Code Climate]: https://codeclimate.com/github/elgalu/jenkins-box
+<!-- [Coverage Status]: https://coveralls.io/r/elgalu/jenkins-box -->
 
-<!-- [GV img]: https://badge.fury.io/rb/jenkins_box.png -->
-[BS img]: https://travis-ci.org/elgalu/jenkins_box.png
-[DS img]: https://gemnasium.com/elgalu/jenkins_box.png
-[CC img]: https://codeclimate.com/github/elgalu/jenkins_box.png
-<!-- [CS img]: https://coveralls.io/repos/elgalu/jenkins_box/badge.png?branch=master -->
+<!-- [GV img]: https://badge.fury.io/rb/jenkins-box.png -->
+[BS img]: https://travis-ci.org/elgalu/jenkins-box.png
+[DS img]: https://gemnasium.com/elgalu/jenkins-box.png
+[CC img]: https://codeclimate.com/github/elgalu/jenkins-box.png
+<!-- [CS img]: https://coveralls.io/repos/elgalu/jenkins-box/badge.png?branch=master -->
 
 [test-kitchen]: https://github.com/test-kitchen/test-kitchen
 [minitest-chef-handler]: https://github.com/calavera/minitest-chef-handler

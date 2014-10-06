@@ -12,8 +12,8 @@ Vagrant.configure('2') do |config|
   config.vm.box_url = 'http://nitron-vagrant.s3-website-us-east-1.amazonaws.com/vagrant_ubuntu_12.04.3_amd64_virtualbox.box'
 
   # You can start off using a VagrantUp.com provided box if you don't yet trust my uploaded base-jenkins-precise64-0.box
-  # config.vm.box = 'precise64' # All vagrant VMs require a box to build off of.
-  # config.vm.box_url = 'http://files.vagrantup.com/precise64.box' # Fetch from here if doesn't exist on the file system
+  # config.vm.box = 'ubuntu/trusty64' # Find more at https://vagrantcloud.com/ubuntu/boxes/trusty64
+  # config.vm.box_url = 'https://vagrantcloud.com/ubuntu/trusty64' # Fetch from here if doesn't exist on the file system
 
   # Packages where built using `vagrant package` e.g. below. Ref at: http://docs-v1.vagrantup.com/v1/docs/getting-started/packaging.html
   #   vagrant up

@@ -19,8 +19,8 @@ platforms:
 
 # - name: ubuntu-12.04-x86_64
 #   driver_config:
-#     box: precise64
-#     box_url: http://files.vagrantup.com/precise64.box
+#     box: ubuntu/trusty64
+#     box_url: https://vagrantcloud.com/ubuntu/trusty64
 
 - name: ubuntu-12.04
   driver_config:

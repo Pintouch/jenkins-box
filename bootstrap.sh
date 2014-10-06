@@ -35,13 +35,16 @@ gem install bundler --no-ri --no-rdoc
 bundle install
 
 echo ""
-echo "Installing cookbooks using berkshelf"
-bundle exec berks vendor cookbooks
+echo "Installing necessary vagrant plugins"
+vagrant plugin install vagrant-berkshelf #--plugin-prerelease
+vagrant plugin install vagrant-omnibus
+# $ vagrant plugin list
+#=> vagrant-berkshelf (3.0.1)
+#=> vagrant-omnibus (1.4.1)
 
 echo ""
-echo "Installing necessary vagrant plugins"
-vagrant plugin install vagrant-berkshelf --plugin-prerelease
-vagrant plugin install vagrant-omnibus
+echo "Installing cookbooks using berkshelf"
+bundle exec berks vendor cookbooks
 
 echo ""
 echo "If no errors try running 'vagrant up'"
